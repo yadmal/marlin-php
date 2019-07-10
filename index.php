@@ -1,11 +1,10 @@
 <?php
-$tasks = [
-  [
-    "id" => 15,
-    "title" => "It's title",
-    "content" => "It's content"
-  ]
-];
+
+$pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+$sql = "SELECT * FROM tasks";
+$statement = $pdo->prepare($sql);
+$statement->execute();// выполнение запроса, вернет либо true, либо false
+$tasks = $statement->fetchAll(PDO::FETCH_ASSOC); //чтобы при выводе массива не было дубликатов
 
 ?>
 <!DOCTYPE html>
